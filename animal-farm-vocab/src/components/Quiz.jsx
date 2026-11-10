@@ -5,7 +5,7 @@ export default function Quiz({ question, optionPool, index, total, correct, onAn
   const [chosen, setChosen] = useState(null);
   const options = useMemo(() => makeOptions(question, optionPool), [question, optionPool]);
   const isCorrect = chosen === question.word[question.field];
-  const isLite = question.book === 'lite';
+  const isAnimal = question.book === 'animal';
 
   function choose(option) {
     if (chosen !== null) return;
@@ -39,11 +39,14 @@ export default function Quiz({ question, optionPool, index, total, correct, onAn
       <dl>
         <dt>뜻</dt><dd>{question.word.meaning}</dd>
         <dt>대표 유의어</dt><dd>{question.word.syn}</dd>
-        {!isLite && <><dt>영영풀이</dt><dd>{question.word.definition}</dd>
+        {isAnimal ? <>
+          <dt>영영풀이</dt><dd>{question.word.definition}</dd>
           <dt>영영풀이 해석</dt><dd>{question.word.translation}</dd>
-          <dt>학교 필기</dt><dd>{question.word.note}</dd></>}
-        {isLite && <><dt>출처</dt><dd>{question.word.chapter}</dd>
-          <dt>학습 기준</dt><dd>본문 문맥에서 가까운 대표 유의어</dd></>}
+          <dt>학교 필기</dt><dd>{question.word.note}</dd>
+        </> : <>
+          <dt>출처</dt><dd>{question.word.chapter}</dd>
+          <dt>학습 기준</dt><dd>첨부한 본문의 문맥에서 가까운 대표 유의어</dd>
+        </>}
       </dl>
     </div>}
     {chosen !== null && <button className="primary" onClick={onNext}>

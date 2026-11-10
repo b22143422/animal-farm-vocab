@@ -10,7 +10,7 @@ export function shuffle(items) {
 }
 
 export function makeQuestions(words, mode, amount, book = 'animal') {
-  const available = book === 'lite' ? ['meaning', 'syn'] : ['meaning', 'syn', 'definition'];
+  const available = book === 'animal' ? ['meaning', 'syn', 'definition'] : ['meaning', 'syn'];
   const fields = mode === 'mixed' ? available : [mode];
   const questions = shuffle(words.flatMap((word) => fields.map((field) => ({
     id: `${book}-${word.id}-${field}`, word, field, book
@@ -21,7 +21,6 @@ export function makeQuestions(words, mode, amount, book = 'animal') {
 export function makeOptions(question, allWords) {
   const { word, field } = question;
   const right = word[field];
-  // 보기에는 동일한 답을 중복 배치하지 않으며 현재 교재의 어휘만 활용한다.
   const unique = [...new Set(allWords.filter((item) => item.id !== word.id)
     .map((item) => item[field]).filter((v) => v && v !== right && v !== '—'))];
   return shuffle([right, ...shuffle(unique).slice(0, 3)]);
@@ -34,6 +33,12 @@ export function chapterOf(word) {
 export function selectLiteWords(words, unit, passage) {
   return words.filter((w) =>
     (unit === 'all' || String(w.unit) === String(unit)) &&
+    (passage === 'all' || String(w.number) === String(passage))
+  );
+}
+
+export function selectLiteratureWords(words, work, passage) {
+  return words.filter((w) => w.work === work &&
     (passage === 'all' || String(w.number) === String(passage))
   );
 }

@@ -4,7 +4,7 @@ export default function QuizResult({ results, book, onRestart, onRedo }) {
   const right = results.filter((r) => r.ok).length;
   const wrong = results.filter((r) => !r.ok);
   const percentage = results.length ? Math.round(100 * right / results.length) : 0;
-  const isLite = book === 'lite';
+  const isAnimal = book === 'animal';
 
   return <section className="panel">
     <div className="section-heading"><span className="eyebrow">03 · RESULT</span><h2>채점 결과</h2></div>
@@ -37,7 +37,7 @@ export default function QuizResult({ results, book, onRestart, onRedo }) {
           <p><b>선택한 답:</b> {entry.answer}</p>
           <p><b>정답:</b> {w[entry.question.field]}</p>
           <p><b>뜻:</b> {w.meaning}</p><p><b>유의어:</b> {w.syn}</p>
-          {!isLite && <><p><b>영영풀이:</b> {w.definition}</p><p><b>해석:</b> {w.translation}</p>
+          {isAnimal && <><p><b>영영풀이:</b> {w.definition}</p><p><b>해석:</b> {w.translation}</p>
             <p><b>학교 필기:</b> {w.note}</p></>}
         </article>;
       })}

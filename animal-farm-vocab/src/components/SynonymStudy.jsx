@@ -1,26 +1,35 @@
 import { useMemo, useState } from 'react';
 
-const KEY = 'light-erd-known-synonyms-v1';
-function initialKnown() { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch { return {}; } }
+const STORAGE_KEYS = {
+  lite: 'light-erd-known-synonyms-v1',
+  literature: 'english-literature-known-synonyms-v1'
+};
 
-export default function SynonymStudy({ words, onBack, onTest }) {
+function initialKnown(book) {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEYS[book]) || '{}'); }
+  catch { return {}; }
+}
+
+export default function SynonymStudy({ book = 'lite', words, onBack, onTest }) {
   const [query, setQuery] = useState('');
   const [reveal, setReveal] = useState({});
   const [allOpen, setAllOpen] = useState(false);
-  const [known, setKnown] = useState(initialKnown);
+  const [known, setKnown] = useState(() => initialKnown(book));
   const [onlyUnknown, setOnlyUnknown] = useState(false);
   const visible = useMemo(() => words.filter((w) =>
     (!onlyUnknown || !known[w.id]) && (!query.trim() || w.word.toLowerCase().includes(query.trim().toLowerCase()) ||
-    w.meaning.includes(query.trim()) || w.chapter.includes(query.trim()))), [words, query, onlyUnknown, known]);
+    w.meaning.includes(query.trim()) || w.chapter.toLowerCase().includes(query.trim().toLowerCase()))),
+    [words, query, onlyUnknown, known]);
   const knownCount = words.filter((w) => known[w.id]).length;
 
   function toggleKnown(id) {
     setKnown((prev) => {
       const updated = { ...prev, [id]: !prev[id] };
-      try { localStorage.setItem(KEY, JSON.stringify(updated)); } catch { /* optional */ }
+      try { localStorage.setItem(STORAGE_KEYS[book], JSON.stringify(updated)); } catch { /* optional */ }
       return updated;
     });
   }
+
   return <section className="panel">
     <div className="section-heading"><span className="eyebrow">VOCABULARY STUDY</span><h2>유의어 암기장</h2></div>
     <p className="muted">단어를 보고 정답을 떠올린 다음 카드를 눌러 뜻과 유의어를 확인하세요.

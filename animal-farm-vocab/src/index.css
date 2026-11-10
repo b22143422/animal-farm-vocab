@@ -20,3 +20,11 @@
 .study-answer{font-size:13px;line-height:1.85;overflow-wrap:anywhere}
 @media(max-width:680px){.book-nav button{font-size:13px;padding:12px 6px}.study-grid{grid-template-columns:1fr}.study-toolbar input{width:100%}}
 @media print{.book-nav,.study-toolbar,.study-reveal small{display:none}}
+
+/* 영미문 교과서: 세 번째 교재 탭과 작품·본문 선택 */
+.book-nav button { min-width: 0; }
+@media (max-width: 520px) {
+  .book-nav { flex-wrap: wrap; }
+  .book-nav button { flex: 1 1 43%; }
+  .book-nav button:last-child { flex: 1 1 100%; }
+}
