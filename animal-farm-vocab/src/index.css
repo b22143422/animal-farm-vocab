@@ -28,3 +28,58 @@
   .book-nav button { flex: 1 1 43%; }
   .book-nav button:last-child { flex: 1 1 100%; }
 }
+
+/* White Lies: 제4교재 탭 / 반별 학교 필기 및 2개 학습 영역 */
+.wl-area-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:25px}
+.wl-area-tabs button{border:1px solid #c8d5e3;background:#f7f9fc;padding:14px 9px;border-radius:10px;font:inherit;font-weight:800;color:#425774}
+.wl-area-tabs button.selected{background:#142d50;color:white;border-color:#142d50}
+.wl-pending{border:1px dashed #a7b9cc;background:#f7f9fc;padding:28px;border-radius:12px;line-height:1.9}
+.wl-pending h3{margin-top:0}
+.wl-info{padding:14px 16px;border-left:3px solid #af3841;background:#f9f5f5;border-radius:5px;color:#5a5862;font-size:13px;line-height:1.8}
+.wl-form{grid-template-columns:repeat(3,minmax(0,1fr))}
+.wl-study-button{min-height:85px}
+.wl-notes{font-size:13px;line-height:1.75;width:100%;overflow-wrap:anywhere}
+.wl-note-row{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
+.wl-tag{background:#eaf0f7;border-radius:5px;color:#34516f;padding:1px 6px;white-space:nowrap;font-weight:800;font-size:11px}
+.wl-caution{margin:9px 0 2px;background:#fff7e8;border-radius:7px;border-left:3px solid #d7a43f;padding:8px 10px;color:#694c20}
+.wl-small{color:#65788d;margin:6px 0}
+.wl-section .feedback h4{margin:16px 0 8px}
+@media(max-width:680px){.wl-form{grid-template-columns:1fr}.book-nav{flex-wrap:wrap}.book-nav button,.book-nav button:last-child{flex:1 1 45%}}
+@media print{.wl-area-tabs,.wl-info,.wl-section .study-toolbar,.wl-section .inline-check{display:none}}
+
+/* White Lies: 선명한 두 영역 선택 카드 / 모바일 대응 */
+.wl-title{margin-bottom:21px}
+.wl-title p{margin:10px 0 0;color:#748399;font-size:14px;line-height:1.65}
+.wl-section .wl-area-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 28px}
+.wl-section .wl-area-button{position:relative;display:flex;align-items:center;gap:13px;min-height:88px;width:100%;text-align:left;border:1px solid #dfe6ee;border-radius:15px;padding:16px 18px;background:#f7f9fc;color:#213a58;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}
+.wl-section .wl-area-button:hover:not(.selected){border-color:#9db0c5;background:#f1f5fa;transform:translateY(-1px)}
+.wl-section .wl-area-button.selected{background:#183451;border-color:#183451;color:#fff;box-shadow:0 7px 18px #18345124}
+.wl-area-button.selected:after{content:'';position:absolute;left:17px;right:17px;bottom:0;height:3px;background:#e14c58;border-radius:9px 9px 0 0}
+.wl-area-icon{display:flex;align-items:center;justify-content:center;flex:0 0 42px;height:42px;border:1px solid #e0e8f0;background:#fff;border-radius:11px;color:#b83040}
+.wl-area-button.selected .wl-area-icon{background:#ffffff22;border-color:#ffffff38;color:#fff}
+.wl-area-content{min-width:0;display:flex;flex-direction:column;gap:5px}
+.wl-area-content strong{font-size:16px;line-height:1.35;letter-spacing:-.35px}
+.wl-area-content small{font-size:12px;font-weight:600;color:#74859b;line-height:1.45}
+.wl-area-button.selected .wl-area-content small{color:#c2d2e3}
+.wl-area-number{position:absolute;top:11px;right:14px;font-size:11px;color:#abb9c9;font-weight:800;letter-spacing:1px}
+.wl-area-button.selected .wl-area-number{color:#aec3d9}
+.wl-section .wl-setup-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:4px 0 20px}
+.wl-setup-heading h3{margin:0 0 6px;font-size:20px;letter-spacing:-.6px}
+.wl-setup-heading p{margin:0;color:#77869a;font-size:13px;line-height:1.6}
+.wl-count-badge{white-space:nowrap;background:#f1f5f9;border:1px solid #e4eaf1;color:#344f6c;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}
+.wl-section .wl-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.wl-section .wl-form select{min-height:48px;border-radius:11px;border-color:#cfdbe8}
+.wl-section .wl-form select:disabled{opacity:1;background:#f5f7fb;color:#66778d}
+.wl-section .wl-info{border:0;border-radius:11px;background:#f7f9fc;color:#607189;padding:14px 16px;margin:17px 0;font-size:13px;line-height:1.75}
+.wl-section .wl-actions{margin-top:20px}
+.wl-translation{color:#526782;font-weight:500}
+.wl-question-definition{font-size:clamp(20px,3vw,28px);line-height:1.6;max-width:800px;word-break:keep-all}
+.wl-section .wl-definition-options .option{min-height:63px;align-items:center;line-height:1.7}
+.wl-section .study-card{border-radius:14px}
+.wl-section .study-reveal{border-radius:10px;line-height:1.6}
+.wl-section .study-reveal .study-answer{font-size:14px}
+@media(max-width:680px){.wl-section .wl-form{grid-template-columns:1fr}.wl-section .wl-area-button{padding:13px 11px;gap:9px;min-height:85px}.wl-area-icon{flex-basis:34px;height:34px}.wl-area-content strong{font-size:13px}.wl-area-content small{font-size:11px}.wl-area-number{display:none}}
+@media(max-width:400px){.wl-section .wl-area-tabs{gap:7px}.wl-section .wl-area-button{gap:7px;padding:10px 8px}.wl-area-icon{flex-basis:29px;height:30px}.wl-area-icon svg{width:16px;height:16px}}
+@media print{.wl-section .wl-area-tabs{display:none}}
+
+.wl-definition-warning{display:block;margin-top:5px;color:#ab4b25;font-weight:700;font-size:12px}
