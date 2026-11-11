@@ -7,7 +7,10 @@ import { missedQuestions } from './components/WrongAnswers.jsx';
 import { vocabulary } from './data/vocabulary.js';
 import { vocabularyLite } from './data/vocabularyLite.js';
 import { vocabularyLiterature } from './data/vocabularyLiterature.js';
+import { vocabularyWonder } from './data/vocabularyWonder.js';
 import { makeQuestions, chapterOf, selectLiteWords, selectLiteratureWords } from './utils/quiz.js';
+
+const literatureWords = [...vocabularyLiterature, ...vocabularyWonder];
 
 const HISTORY_KEY = {
   animal: 'animal-farm-vocab-last-result-v1',
@@ -46,7 +49,7 @@ export default function App() {
     ? vocabulary.filter((w) => settings.chapter === 'all' || chapterOf(w) === Number(settings.chapter))
     : book === 'lite'
       ? selectLiteWords(vocabularyLite, settings.unit, settings.passage)
-      : selectLiteratureWords(vocabularyLiterature, settings.work, settings.passage);
+      : selectLiteratureWords(literatureWords, settings.work, settings.passage);
 
   function changeBook(nextBook) {
     setBook(nextBook);
@@ -84,7 +87,7 @@ export default function App() {
     ? { heading: 'Animal Farm', subtitle: '어휘 암기 체크', detail: 'Chapter 1 · 5 · 7 | 43개 어휘 · 뜻·유의어·영영풀이' }
     : book === 'lite'
       ? { heading: '수특 라이트 영독연', subtitle: '유의어 암기 체크', detail: '8강 #4 · 9~12강 · Mini Test 3 | 35개 지문 · 핵심 유의어 296개' }
-      : { heading: '영미문 교과서', subtitle: '유의어 암기 체크', detail: 'The Tempest · The Giver | 본문 1~6 · 본문 1~19 · 총 293개 핵심 어휘' };
+      : { heading: '영미문 교과서', subtitle: '유의어 암기 체크', detail: 'The Tempest · The Giver · Wonder | 작품별 · 본문/Part별 유의어 암기' };
 
   return <div className="app">
     <header className="hero"><div className="hero-inner">
@@ -116,7 +119,7 @@ export default function App() {
           ? <><br />학교 필기는 원본 메모를 옮긴 내용으로 일부 표현이 부정확할 수 있습니다.</>
           : book === 'lite'
             ? <><br />유의어는 첨부 본문의 문맥 기준으로 선정한 학습용 자료입니다. Mini Test 3의 8·10·11번은 원본 자료에 없어 제외했습니다.</>
-            : <><br />영미문 교과서 어휘는 제공된 The Tempest / The Giver 본문에 등장하는 단어를 선정했습니다. 유의어는 문맥상 가까운 학습용 대표 표현이며 공식 유의어 목록은 아닙니다.</>}
+            : <><br />영미문 교과서 어휘는 제공된 The Tempest / The Giver / Wonder 자료에서 단어를 선정했습니다. Wonder Part 5~7은 영어 줄거리 요약을 기준으로 합니다. 유의어는 문맥상 가까운 학습용 대표 표현이며 공식 유의어 목록은 아닙니다.</>}
       </footer>
     </main>
   </div>;
